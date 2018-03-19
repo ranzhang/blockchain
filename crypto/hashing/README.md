@@ -109,8 +109,9 @@ doubleSha256(text)
 
 
 
-### A Simple Merkel Tree
-Merkel tree is a binary tree of hashes. 
+### Finding Merkel Root
+Merkel tree is a binary tree of hashes. All the hashes are recursively hashed (doubleshashed in this example) until a single 
+Merkle root is generated. This single hash can be used as the finger print for the entire tree without storing the tree.
 
 
 ```python
