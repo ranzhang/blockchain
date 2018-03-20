@@ -1,5 +1,7 @@
 
 ## Crypto Hashing and Merkle Tree
+**Randy Zhang**
+
 Hashing is to take a typically long list and condenses it to a short list. The short list (hash) is used to represent the long list (input). Hashing is commonly used in programming and database to speed up search. The algorithm to generate the hash is called the hash function.
 
 A hashing algorithm is a mathematical function that condenses data to a fixed size. Here we are interested in only the cryptographic hashing. Hash is, called message digest in cryptography, used as a finger print for some input data. If there is any change to the data, the hash will be different. By computing the hash, you will be able to determine if the data have changed in any way. Hash is used in blockchain to represent data integrity of blocks.
@@ -96,7 +98,7 @@ hashlib.sha256(text+text).hexdigest()
 
 
 ```python
-##double hashing
+##double hashing is much more secure and is used in Bitcoin
 def doubleSha256(input):
     return hashlib.sha256(hashlib.sha256(input).hexdigest()).hexdigest() 
 doubleSha256(text)
