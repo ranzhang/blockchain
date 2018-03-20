@@ -1,5 +1,5 @@
 
-## Hashing
+## Crypto Hashing
 Hashing is to take a typically long list and condenses it to a short list. The short list (hash) is used to represent the long list (input). Hashing is commonly used in programming and database to speed up search. The algorithm to generate the hash is called the hash function.
 
 A hashing algorithm is a mathematical function that condenses data to a fixed size. Here we are interested in only the cryptographic hashing. Hash is, called message digest in cryptography, used as a finger print for some input data. If there is any change to the data, the hash will be different. By computing the hash, you will be able to determine if the data have changed in any way. Hash is used in blockchain to represent data integrity of blocks.
@@ -111,7 +111,8 @@ doubleSha256(text)
 
 ### Finding Merkel Root
 Merkel tree is a binary tree of hashes. All the hashes are recursively hashed (doubleshashed in this example) until a single 
-Merkle root is generated. This single hash can be used as the finger print for the entire tree without storing the tree.
+Merkle root is generated. This single hash can be used as the finger print for the entire tree without storing the tree. Merkle 
+root is used in Bitcoin to represent all the transactions in the block.
 
 
 ```python
