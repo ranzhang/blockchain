@@ -1,5 +1,5 @@
 
-## Crypto Hashing
+## Crypto Hashing and Merkle Tree
 Hashing is to take a typically long list and condenses it to a short list. The short list (hash) is used to represent the long list (input). Hashing is commonly used in programming and database to speed up search. The algorithm to generate the hash is called the hash function.
 
 A hashing algorithm is a mathematical function that condenses data to a fixed size. Here we are interested in only the cryptographic hashing. Hash is, called message digest in cryptography, used as a finger print for some input data. If there is any change to the data, the hash will be different. By computing the hash, you will be able to determine if the data have changed in any way. Hash is used in blockchain to represent data integrity of blocks.
@@ -17,7 +17,7 @@ Examples of hash algorithms used in cryptography:
 - 3 SHA2: two types, SHA256 (256 bit digest) and SHA512 (512 bit digest)
 - 4 SHA3: recommended
 
-### Basics
+### Hashing Basics
 
 
 ```python
