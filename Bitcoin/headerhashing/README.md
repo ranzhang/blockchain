@@ -141,7 +141,7 @@ headerByte = headerHex.decode('hex')                ##convert hex digits into a 
 ##run through the double SHA256 hashing
 hash = hashlib.sha256(hashlib.sha256(headerByte).digest()).digest()
 hash.encode('hex_codec')                            ##aggregate a sequence of bytes into a hex string
-hash = hash[::-1].encode('hex_codec')               ##conert to little-endian representation
+hash = hash[::-1].encode('hex_codec')               ##reverse the order in hex
 hash
 ```
 
