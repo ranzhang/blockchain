@@ -8,6 +8,14 @@ Bitcoin records these hash values:
 
 This post documents Python code to generate the hash and the target. A block is only accepted if its hash is less than or equal to the target (PoW condition). Merkle Root hashing code is documented [here](https://github.com/ranzhang/blockchain/tree/master/crypto/hashing).
 
+Answers to some of the common misconception and misinformation:
+1. Misconception: Bitcoin Proof of Work (PoW) condition is based on the number of leading zeros. Actually: A block is only accepted if its hash is less than or equal to the target, and not number of leading zeros. In some cases, it may be true that number of leading zeros is a simple representation
+2. Misconception: Bitcoin block hash is a hash of the entire block. Actually: It is a hash of the header only.
+3. Misconception: Bitcoin block hash is a hash of the block header and the previous block. Actually: It is a hash of the header of the current block.
+4. Misconception: Bitcoin Difficulty value is directly used in PoW condition. Actually: Difficulty is used to compute the target, which is used for PoW condition.
+5. Misconception: Bitcoin block hash is part of the block. Actually: The block hash is part of the header of its child block and is not directly encoded in the current block.
+6. Misconception: Nonce is some magic random number. Actually: It is a well known range that is sequentially incremented during PoW.
+
 ### Bitcoin Block Header Hashing
 One of the most important computation of the Bitcoin nodes is to compute block header hash. 
 Using a real block [125552](https://blockchain.info/block/00000000000000001e8d6829a8a21adc5d38d0a473b144b6765798e61f98bd1d) to demonstrate how to compute block header hash from the 6 header fields. 
