@@ -1,4 +1,4 @@
-## Bitcoin Hashing
+## Bitcoin Hashing with Python
 *by Randy Zhang*
 
 Bitcoin records these hash values:
