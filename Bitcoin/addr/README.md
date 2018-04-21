@@ -2,7 +2,7 @@
 ## How to Compute Bitcoin Addresses with Python
 **By Randy Zhang
 
-The purpose of Bitcoin blockchain is to process and document bitcoin transactions. Each transaction records bitcoin value in the form of satoshi's between a payer and one or more payees. Bitcoin address is used to receive bitcoins but it is not directly provided in a Bitcoin block. The address can be computed from the information provided in the blocks. 
+The purpose of Bitcoin blockchain is to process and document bitcoin transactions. Each transaction records bitcoin value in the form of satoshi's between a payer and one or more payees. Bitcoin address is used to receive bitcoins but it is not directly encoded in a Bitcoin block. The address can be computed from the information provided in the blocks. 
 There are several payment methods supported by Bitcoin:
 - P2PKH (Pay to Public Key Hash): This is the most common method in Bitcoin v1. Payer provides signature and public key (not key hash). The network performs the validation. The public key is not shown in the transaction until it is spent.
 - P2SH (Pay to Script Hash): Payer does not provide public key, just a script. 
