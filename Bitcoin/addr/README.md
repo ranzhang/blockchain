@@ -6,7 +6,7 @@ The purpose of Bitcoin blockchain is to process and document bitcoin transaction
 There are several payment methods supported by Bitcoin:
 - P2PKH (Pay to Public Key Hash): This is the most common method in Bitcoin v1. Payer provides signature and public key (not key hash). The network performs the validation. The public key is not shown in the transaction until it is spent.
 - P2SH (Pay to Script Hash): Payer does not provide public key, just a script. 
-- P2WPKH (Pay To Witness Public Key Hash): same as P2PKH except now the key hash (witness data) is stored at the witness section. This is part of the enhancement by SegWit (Segregated Witness).
+- P2WPKH (Pay To Witness Public Key Hash): same as P2PKH except now the witness data (public key and signature) are stored in the witness section. This is part of the enhancement by SegWit (Segregated Witness).
 - P2WSH: same as P2SH except the script is now stored at the witness section. This is part of the enhancement by SegWit (Segregated Witness).
 
 This post will document how to compute the two most common Bitcoin addresses from a given public key.
