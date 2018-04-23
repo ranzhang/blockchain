@@ -2,14 +2,14 @@
 ## How to Compute Bitcoin Addresses with Python
 **By Randy Zhang
 
-The purpose of Bitcoin blockchain is to process and document bitcoin transactions. Each transaction records bitcoin value in the form of satoshi's between a payer and one or more payees. Bitcoin address is used to receive bitcoins but it is not directly encoded in a Bitcoin block. The address can be computed from the information provided in the blocks. 
+The purpose of Bitcoin blockchain is to process and document bitcoin transactions. Each transaction records bitcoin value in the form of satoshi's between a payer and one or more payees. Bitcoin address is used to receive bitcoins but it is not directly provided in a Bitcoin block. The address can be computed from the information provided in the blocks. 
 There are several payment methods supported by Bitcoin:
 - P2PKH (Pay to Public Key Hash): This is the most common method in Bitcoin v1. Payer provides signature and public key (not key hash). The network performs the validation. The public key is not shown in the transaction until it is spent.
 - P2SH (Pay to Script Hash): Payer does not provide public key, just a script. 
-- P2WPKH (Pay To Witness Public Key Hash): same as P2PKH except now the witness data (public key and signature) are stored in the witness section. This is part of the enhancement by SegWit (Segregated Witness).
+- P2WPKH (Pay To Witness Public Key Hash): same as P2PKH except now the key hash (witness data) is stored at the witness section. This is part of the enhancement by SegWit (Segregated Witness).
 - P2WSH: same as P2SH except the script is now stored at the witness section. This is part of the enhancement by SegWit (Segregated Witness).
 
-This post will document how to compute the two most common Bitcoin addresses from a given public key.
+This post will document how to compute the two most common Bitcoin addresses from a given public key and key hash. How to do public key compression is included as well.
 
 ### From Public Key to P2PKH Address
 P2PKH address is a 25-byte entity encoded in Base58. A sample Bitcoin address looks like this: 1FwLde9A8xyiboJkmjpBnVUYi1DTbXi8yf. These are the steps to compute the address using a public key:
@@ -84,7 +84,7 @@ def puk2WPKH(puk, ver):
 
 
 ```python
-puk = '0450863AD64A87AE8A2FE83C1AF1A8403CB53F53E486D8511DAD8A04887E5B23522CD470243453A299FA9E77237716103ABC11A1DF38855ED6F2EE187E9C582BA6'
+puk = '0204b3506d8903ca601c97a4abab6548e91004c535a5a45e21299a494b146859ca'
 ver ='06'
 puk2WPKH(puk, ver)
 ```
@@ -92,5 +92,53 @@ puk2WPKH(puk, ver)
 
 
 
-    'p2xtZoXeX5X8BP8JfFhQK2nD3emtjch7UeFm'
+    'p2xxWKrnHUv4PsNC8U1noMVGKez8qyopFQLk'
+
+
+
+### From Key Hash to P2WPKH Address
+
+
+```python
+def keyhash2WPKH(keyhash, ver):
+    wver = '00'
+    ext = ver + wver + '00' + keyhash
+    cs = binascii.hexlify(hashlib.sha256(hashlib.sha256(binascii.unhexlify(ext)).digest()).digest())
+    checksum = cs[:8]
+    final = ext + checksum
+    return base58.b58encode(final.decode('hex'))
+
+keyhash = "2c418ec354a1ab688a656d86b16c02abe8f592e9"
+ver = '06'
+keyhash2WPKH(keyhash, ver)
+```
+
+
+
+
+    'p2xxWKrnHUv4PsNC8U1noMVGKez8qyopFQLk'
+
+
+
+### Compressing Public Key
+Compress a 65 byte public key to 33 bytes. Compressed public key is used in P2WPKH.
+
+
+```python
+def puk2compress(puk):
+    XY = puk[2:]
+    X, Y = XY[:len(XY)/2], XY[len(XY)/2:]
+    pref = '02' if int(Y[-1]) % 2 == 0 else '03'
+    return pref + X
+    
+puk = '0450863AD64A87AE8A2FE83C1AF1A8403CB53F53E486D8511DAD8A04887E5B23522CD470243453A299FA9E77237716103ABC11A1DF38855ED6F2EE187E9C582BA6'
+puk2compress(puk)
+```
+
+
+
+
+    '0250863AD64A87AE8A2FE83C1AF1A8403CB53F53E486D8511DAD8A04887E5B2352'
+
+
 
