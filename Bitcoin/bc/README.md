@@ -3,8 +3,8 @@
 ** By Randy Zhang **    
   
 This is a simple implementation to demonstrate some of the basic fundamental components of a blockchain. Key sections of the code are:
-1. A Block class that computes block header and double SHA256 head hash
-2. A Blockchain class that can generate the genesis block and additional blocks with a simple Proof of Work algorithm. The difficulty and hash target values are set in a way to quickly mine a block. The basic concept though is the same as it is used in Bitcoin. 
+1. A Block class that computes block header and double SHA256 header hash
+2. A Blockchain class that can generate the genesis block and additional blocks with a simple Proof of Work algorithm. Though the difficulty and hash target values are set in a way to quickly mine a block, the basic concept is the same as it is used in Bitcoin. 
 
 
 ```python
