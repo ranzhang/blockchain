@@ -82,6 +82,7 @@ class Blockchain(object):
                 self.chain.append(block)
                 return block
             nonce += 1
+        return None
         
     def create_new_block(self, nonce, previous_hash, transactions):
         
