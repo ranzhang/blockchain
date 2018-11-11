@@ -78,7 +78,7 @@ class Blockchain(object):
         nonce = 0
         while nonce <= MAX_NOUNCE:
             block = self.create_new_block(nonce, previous_hash, transactions)
-            if block.hash < target32:
+            if block.hash <= target32:
                 self.chain.append(block)
                 return block
             nonce += 1
